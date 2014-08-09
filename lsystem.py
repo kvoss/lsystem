@@ -1,7 +1,7 @@
 from itertools import islice
 import unittest
 
-class LsystemI:
+class LSystemI:
     def __init__(self, pieces='', rules={}):
         self.pieces = pieces
         self.rules = rules
@@ -26,7 +26,7 @@ class LSystem(object):
     """Container for an L-System
     
     """
-    def __init__(self, variables=[], axiom=[], consts=[], rules={}):
+    def __init__(self, variables=[], axiom='', consts=[], rules={}):
         super(LSystem, self).__init__()
         self.variables = variables,
         self.axiom = axiom
@@ -35,7 +35,7 @@ class LSystem(object):
 
     def __getitem__(self, n):
         "Returns the nth item or the axiom"
-        iterable = LsystemI(self.axiom, self.rules)
+        iterable = LSystemI(self.axiom, self.rules)
         return next(islice(iterable, n, None), self.axiom)
 
 
