@@ -16,22 +16,19 @@ def restore():
     turtle.down()
 
 methods = {
-        'F': lambda: turtle.fd(3),
+        'F': lambda: turtle.fd(1),
         '-': lambda: turtle.left(25),
         '+': lambda: turtle.right(25),
 
         '[': lambda: q.append((turtle.pos(), turtle.heading())),
         ']': restore,
-
-        'A': lambda: turtle.fd(5),
-        'B': lambda: turtle.fd(2),
 }
 
 turtle.ht()
 turtle.pencolor('green')
 turtle.delay(0)
 turtle.seth(90)
-for c in plantL[5]:
+for c in plantL[7]:
     try:
         methods[c]()
     except KeyError:
