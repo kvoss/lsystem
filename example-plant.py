@@ -16,7 +16,7 @@ def restore():
     turtle.down()
 
 methods = {
-        'F': lambda: turtle.fd(2),
+        'F': lambda: turtle.fd(3),
         '-': lambda: turtle.left(25),
         '+': lambda: turtle.right(25),
 
@@ -24,6 +24,7 @@ methods = {
         ']': restore,
 }
 
+turtle.screensize(800,1200)
 turtle.ht()
 turtle.pencolor('green')
 turtle.delay(0)
@@ -34,5 +35,7 @@ for c in plantL[6]:
     except KeyError:
         pass
 
-turtle.exitonclick()
+ts = turtle.getscreen()
+ts.getcanvas().postscript(file='plant6.eps')
+#turtle.exitonclick()
 
