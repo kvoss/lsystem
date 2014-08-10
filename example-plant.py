@@ -3,7 +3,7 @@ from lsystem import LSystem
 
 plant = dict(
         axiom = 'X',
-        rules = {'X': 'F-[[X]+]+F[+FX]-X', 'F':'FF'})
+        rules = {'X': 'F-[[X]+X]+F[+FX]-X', 'F':'FF'})
 plantL = LSystem(**plant)
 
 
@@ -16,7 +16,7 @@ def restore():
     turtle.down()
 
 methods = {
-        'F': lambda: turtle.fd(1),
+        'F': lambda: turtle.fd(2),
         '-': lambda: turtle.left(25),
         '+': lambda: turtle.right(25),
 
@@ -27,8 +27,8 @@ methods = {
 turtle.ht()
 turtle.pencolor('green')
 turtle.delay(0)
-turtle.seth(90)
-for c in plantL[7]:
+turtle.seth(75)
+for c in plantL[6]:
     try:
         methods[c]()
     except KeyError:
