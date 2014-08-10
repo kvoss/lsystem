@@ -12,4 +12,8 @@ Example use:
     abaababaabaab
 
 Another example is given as a script `example-plant.py`.
-Running the script results in the ![plant image](imgs/plant6.png)
+Running the script 
+
+    python example-plant.py
+
+results in the following picture: ![plant image](imgs/plant6.png)
