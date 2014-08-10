@@ -11,4 +11,5 @@ Example use:
     >>> print algae[5]
     abaababaabaab
 
-
+Another example is given as a script `example-plant.py`.
+Running the script results in the ![plant image](imgs/plant6.png)
