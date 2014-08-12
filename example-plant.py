@@ -9,10 +9,10 @@ plantL = LSystem(**plant)
 
 q = []
 def restore():
-    tv = q.pop()
+    pos, angl = q.pop()
     turtle.up()
-    turtle.setposition(tv[0])
-    turtle.seth(tv[1])
+    turtle.setposition(pos)
+    turtle.seth(angl)
     turtle.down()
 
 methods = {
