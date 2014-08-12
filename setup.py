@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 CONFIG = {
-    'name'             : 'lsystem',
+    'name'             : 'lsystems',
     'description'      : 'Implementation of L-Systems',
     'version'          : '0.1.0',
 
