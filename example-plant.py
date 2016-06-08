@@ -3,7 +3,7 @@ from lsystem import LSystem
 
 plant = dict(
         axiom = 'X',
-        rules = {'X': 'F-[[X]+X]+F[+FX]-X', 'F':'FF'})
+        productions = {'X': 'F-[[X]+X]+F[+FX]-X', 'F':'FF'})
 plantL = LSystem(**plant)
 
 
