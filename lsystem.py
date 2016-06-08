@@ -1,41 +1,35 @@
 from itertools import islice
 import unittest
 
+# TODO: try transforming productions just like words
+
 class LSystemI:
-    def __init__(self, pieces='', rules={}):
-        self.pieces = pieces
-        self.rules = rules
+    def __init__(self, word='', productions={}):
+        self.word = word
+        self.productions = productions
 
     def __iter__(self):
         return self
 
     def next(self):
-        pieces = []
-        for v in self.pieces:
-            try:
-                pieces.append(self.rules[v])
-            except KeyError:
-                pieces.append(v)
-        old = self.pieces
-        self.pieces = ''.join(pieces)
-        #self.rules = self.rules
-        # we could trasform them too
+        old = self.word
+        self.word = ''.join(self.productions.get(c, c) for c in self.word)
         return old
 
 class LSystem(object):
     """Container for an L-System
     
     """
-    def __init__(self, variables=[], axiom='', consts=[], rules={}):
+    def __init__(self, variables=[], axiom='', consts=[], productions={}):
         super(LSystem, self).__init__()
         self.variables = variables,
         self.axiom = axiom
         self.consts = consts
-        self.rules = rules
+        self.productions = productions
 
     def __getitem__(self, n):
-        "Returns the nth item or the axiom"
-        iterable = LSystemI(self.axiom, self.rules)
+        "Returns the nth generation or the axiom"
+        iterable = LSystemI(self.axiom, self.productions)
         return next(islice(iterable, n, None), self.axiom)
 
 
@@ -44,12 +38,12 @@ class TestLSystem(unittest.TestCase):
         algae = dict(
                 variables=['A', 'B'], 
                 axiom='A', 
-                rules={ 'A':'AB', 'B': 'A'})
+                productions={ 'A':'AB', 'B': 'A'})
         algaeL = LSystem(**algae)
         self.assertEqual('ABAABABAABAAB', algaeL[5])
 
     def test_ex2(self):
-        ex2 = LSystem(['0', '1'], '0', rules={'1': '11', '0': '1[0]0'})
+        ex2 = LSystem(['0', '1'], '0', productions={'1': '11', '0': '1[0]0'})
         self.assertEqual('1111[11[1[0]0]1[0]0]11[1[0]0]1[0]0', ex2[3])
 
     def test_koch_curve(self):
@@ -57,7 +51,7 @@ class TestLSystem(unittest.TestCase):
                 variables = ['F'],
                 consts = ['+', '-'],
                 axiom = 'F',
-                rules = {'F': 'F+F-F-F+F'})
+                productions = {'F': 'F+F-F-F+F'})
         koch_curveL = LSystem(**koch_curve)
         self.assertEqual('F+F-F-F+F+F+F-F-F+F-F+F-F-F+F-F+F-F-F+F+F+F-F-F+F', koch_curveL[2])
 
@@ -66,7 +60,7 @@ class TestLSystem(unittest.TestCase):
                 variables = ['A', 'B'],
                 consts = ['+', '-'],
                 axiom = 'A',
-                rules = {'A': 'B-A-B', 'B': 'A+B+A'})
+                productions = {'A': 'B-A-B', 'B': 'A+B+A'})
         sierpinski_triangleL = LSystem(**sierpinski_triangle)
         self.assertEqual('B-A-B+A+B+A+B-A-B-A+B+A-B-A-B-A+B+A-B-A-B+A+B+A+B-A-B', 
                 sierpinski_triangleL[3])
