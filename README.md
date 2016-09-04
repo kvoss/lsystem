@@ -8,7 +8,7 @@ Example use:
 ```python
 >>> from lsystem import LSystem
 
->>> algae = LSystem(axiom='a', rules={'a':'ab', 'b':'a'})
+>>> algae = LSystem(axiom='a', productions={'a':'ab', 'b':'a'})
 >>> print algae[5]
 abaababaabaab
 ```
