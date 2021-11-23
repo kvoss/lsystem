@@ -4,9 +4,9 @@ import unittest
 # TODO: try transforming productions just like words
 
 class LSystemI:
-    def __init__(self, word='', productions={}):
+    def __init__(self, word='', productions=None):
         self.word = word
-        self.productions = productions
+        self.productions = dict() if productions is None else productions
 
     def __iter__(self):
         return self
@@ -20,12 +20,12 @@ class LSystem(object):
     """Container for an L-System
     
     """
-    def __init__(self, variables=[], axiom='', consts=[], productions={}):
+    def __init__(self, variables=None, axiom='', consts=None, productions=None):
         super(LSystem, self).__init__()
-        self.variables = variables,
+        self.variables = list() if variables is None else variables
         self.axiom = axiom
-        self.consts = consts
-        self.productions = productions
+        self.consts = list() if consts is None else consts
+        self.productions = dict() if productions is None else productions
 
     def __getitem__(self, n):
         "Returns the nth generation or the axiom"
