@@ -9,9 +9,11 @@ Example use:
 >>> from lsystem import LSystem
 
 >>> algae = LSystem(axiom='a', productions={'a':'ab', 'b':'a'})
->>> print algae[5]
+>>> print(algae[5])
 abaababaabaab
 ```
+
+Requires Python3 or Python>=2.2
 
 Another example is given as a script `example-plant.py`.
 Running the script 
