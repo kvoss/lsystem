@@ -15,6 +15,7 @@ class LSystemI:
         old = self.word
         self.word = ''.join(self.productions.get(c, c) for c in self.word)
         return old
+    __next__ = next
 
 class LSystem(object):
     """Container for an L-System
